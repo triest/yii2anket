@@ -29,10 +29,19 @@
                             'compareAttribute' => 'password',
                             'message' => "Passwords don't match"
                     ],
-                    [['username'], 'string'],
                     [['email'], 'email'],
                     [['email'], 'unique', 'targetClass' => 'app\models\User', 'targetAttribute' => 'email'],
                     [['username'], 'unique', 'targetClass' => 'app\models\User', 'targetAttribute' => 'username'],
+            ];
+        }
+
+        public function attributes()
+        {
+            return [
+                    'id',
+                    'username',
+                    'name',
+                    'email',
             ];
         }
 
@@ -51,7 +60,11 @@
         {
             if ($this->validate()) {
                 $user = new User();
-                $user->attributes = $this->attributes;
+            //    $user->attributes = $this->attributes;
+                $user->name=$this->name;
+                $user->username=$this->username;
+                $user->email=$this->email;
+
                 $hash = Yii::$app->getSecurity()->generatePasswordHash($user->password);
                 $user->password = $hash;
                 //   $user->emailToken = Yii::$app->security->generateRandomString(32);

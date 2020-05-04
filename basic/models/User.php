@@ -23,7 +23,6 @@
     {
 
         public $id;
-        public $username;
         public $password;
         public $authKey;
         public $accessToken;
