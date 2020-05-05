@@ -75,6 +75,8 @@
                     'id',
                     'username',
                     'name',
+                    'age',
+                    'sex',
                     'password',
                     'email',
             ];
@@ -87,7 +89,6 @@
         {
             return User::findOne($id);
         }
-
 
 
         /**
@@ -110,6 +111,7 @@
         {
             return $this->id;
         }
+
         /**
          * {@inheritdoc}
          */
@@ -147,5 +149,13 @@
             // TODO: Implement findIdentityByAccessToken() method.
         }
 
+        public function checkAnket()
+        {
+            if ($this->age == null) {
+                return false;
+            } else {
+                return true;
+            }
+        }
 
     }

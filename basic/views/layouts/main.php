@@ -74,7 +74,7 @@
             </div>
             <div class="col-xs-1">
                 <?php if (Yii::$app->user->isGuest == false): ?>
-                    <?= Html::a('Создать отзыв', ['/review/create'], ['class' => 'btn btn-primary']) ?>
+                    <?= Html::a('Создать анкету', ['/anket/create'], ['class' => 'btn btn-primary']) ?>
                 <?php endif; ?>
             </div>
         </div>
