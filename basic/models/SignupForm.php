@@ -41,6 +41,8 @@
                     'id',
                     'username',
                     'name',
+                    'password',
+                    'name',
                     'email',
             ];
         }
@@ -64,9 +66,7 @@
                 $user->name=$this->name;
                 $user->username=$this->username;
                 $user->email=$this->email;
-
-                $hash = Yii::$app->getSecurity()->generatePasswordHash($user->password);
-                $user->password = $hash;
+                $user->password = $this->password;
                 //   $user->emailToken = Yii::$app->security->generateRandomString(32);
                 // $this->endConfurmEmail($user->mail, $user->emailToken);
 

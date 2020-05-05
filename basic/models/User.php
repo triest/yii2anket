@@ -12,6 +12,7 @@
      * @property string|null $username
      * @property string|null $name
      * @property string|null $email
+     * @property string|null $password
      * @property int|null $age
      * @property int|null $height
      * @property int|null $weight
@@ -23,7 +24,6 @@
     {
 
         public $id;
-        public $password;
         public $authKey;
         public $accessToken;
 
@@ -43,7 +43,7 @@
         {
             return [
                     [['age', 'height', 'weight'], 'integer'],
-                    [['username', 'name', 'email'], 'string', 'max' => 100],
+                    [['username', 'name', 'email','password'], 'string', 'max' => 100],
                     [['sex'], 'string', 'max' => 10],
                     [['description', 'status'], 'string', 'max' => 500],
             ];
@@ -57,6 +57,7 @@
             return [
                     'id' => 'ID',
                     'username' => 'Username',
+                    'password' => 'Password',
                     'name' => 'Name',
                     'email' => 'Email',
                     'age' => 'Age',
@@ -65,6 +66,17 @@
                     'sex' => 'Sex',
                     'description' => 'Description',
                     'status' => 'Status',
+            ];
+        }
+
+        public function attributes()
+        {
+            return [
+                    'id',
+                    'username',
+                    'name',
+                    'password',
+                    'email',
             ];
         }
 
