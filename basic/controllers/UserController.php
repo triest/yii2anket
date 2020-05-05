@@ -20,7 +20,10 @@
             }
             $model = new LoginForm();
             if ($model->load(Yii::$app->request->post()) && $model->login()) {
-                return $this->redirect(['site/index']);
+
+
+               // return $this->redirect('/');
+              //  return $this->redirect(['site/index']);
             }
             $model->password = '';
 

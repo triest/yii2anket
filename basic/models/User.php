@@ -23,7 +23,7 @@
     class User extends ActiveRecord implements \yii\web\IdentityInterface
     {
 
-        public $id;
+
         public $authKey;
         public $accessToken;
 
@@ -43,7 +43,7 @@
         {
             return [
                     [['age', 'height', 'weight'], 'integer'],
-                    [['username', 'name', 'email','password'], 'string', 'max' => 100],
+                    [['username', 'name', 'email', 'password'], 'string', 'max' => 100],
                     [['sex'], 'string', 'max' => 10],
                     [['description', 'status'], 'string', 'max' => 500],
             ];
@@ -85,22 +85,10 @@
          */
         public static function findIdentity($id)
         {
-            return isset(self::$users[$id]) ? new static(self::$users[$id]) : null;
+            return User::findOne($id);
         }
 
-        /**
-         * {@inheritdoc}
-         */
-        public static function findIdentityByAccessToken($token, $type = null)
-        {
-            foreach (self::$users as $user) {
-                if ($user['accessToken'] === $token) {
-                    return new static($user);
-                }
-            }
 
-            return null;
-        }
 
         /**
          * Finds user by username
@@ -110,23 +98,18 @@
          */
         public static function findByUsername($username)
         {
-            foreach (self::$users as $user) {
-                if (strcasecmp($user['username'], $username) === 0) {
-                    return new static($user);
-                }
-            }
-
-            return null;
+            return User::find()->where(['username' => $username])->one();
         }
 
         /**
-         * {@inheritdoc}
+         * Returns an ID that can uniquely identify a user identity.
+         *
+         * @return string|int an ID that uniquely identifies a user identity.
          */
         public function getId()
         {
             return $this->id;
         }
-
         /**
          * {@inheritdoc}
          */
@@ -158,5 +141,11 @@
         {
             return $this->save(false);
         }
+
+        public static function findIdentityByAccessToken($token, $type = null)
+        {
+            // TODO: Implement findIdentityByAccessToken() method.
+        }
+
 
     }
